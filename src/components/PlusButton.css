@@ -1,0 +1,14 @@
+button.plus-button {
+  flex: 1;
+  border: 1px solid #fff;
+  font-size: 150%;
+  margin: 12px;
+  cursor: pointer;
+  max-width: 50px;
+  background-color: #282c34;
+  color: #fff;
+}
+
+button.plus-button:hover {
+  background-color: #181c24;
+}

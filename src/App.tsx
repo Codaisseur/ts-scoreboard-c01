@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import logo from './logo.svg';
-import Title from './components/Title';
-import LightSwitch from './components/LightSwitch';
+import Scoreboard from './components/Scoreboard';
 
 class App extends Component {
   public render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Title content="React" />
-          <LightSwitch />
-          <LightSwitch />
-          <LightSwitch />
+          <Scoreboard />
         </header>
       </div>
     );
