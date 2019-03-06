@@ -3,6 +3,7 @@ import Player, { IPlayer } from './Player';
 import Title from './Title';
 
 import './Scoreboard.css';
+import AddPlayer from './AddPlayer';
 
 interface IScoreboardState {
   players: IPlayer[];
@@ -69,6 +70,7 @@ export default class Scoreboard extends Component<{}, IScoreboardState> {
       <div className="scoreboard">
         <Title content="Scoreboard" />
         <button onClick={this.toggleTimer}>{timerStarted ? 'Stop' : 'Start'}</button>
+        <AddPlayer onSubmit={this.addPlayer} />
         <ul>{players.sort((a, b) => b.score - a.score).map(this.renderPlayer)}</ul>
       </div>
     );
@@ -111,5 +113,31 @@ export default class Scoreboard extends Component<{}, IScoreboardState> {
     this.timer = undefined;
 
     this.setState({ timerStarted: false });
+  };
+
+  public addPlayer = (name: string) => {
+    this.setState({
+      players: [
+        ...this.state.players,
+        {
+          id: this.getNextPlayerId(),
+          name,
+          score: 0,
+        },
+      ],
+    });
+  };
+
+  private getNextPlayerId = () => {
+    const { players } = this.state;
+    return (
+      players.reduce((highestId, player): number => {
+        if (Number(player.id) > highestId) {
+          return player.id!;
+        }
+
+        return highestId;
+      }, 0) + 1
+    );
   };
 }
